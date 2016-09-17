@@ -10,6 +10,6 @@ build:
   - docker build -t docker.ii.org.nz/ii/mattermost-docker:web1 web/
   - docker build -t docker.ii.org.nz/ii/mattermost-docker:app1 app/
   - docker build -t docker.ii.org.nz/ii/mattermost-docker:db1 db/
-  - docker push docker.ii.org.nz/cobudget/cobudget-ui:web1
-  - docker push docker.ii.org.nz/cobudget/cobudget-ui:app1
-  - docker push docker.ii.org.nz/cobudget/cobudget-ui:db1
+  - docker push docker.ii.org.nz/ii/mattermost-docker:web1
+  - docker push docker.ii.org.nz/ii/mattermost-docker:app1
+  - docker push docker.ii.org.nz/ii/mattermost-docker:db1

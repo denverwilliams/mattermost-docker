@@ -84,7 +84,7 @@
         "ShowFullName": true
     },
     "GitLabSettings": {
-        "Enable": "VALUE",
+        "Enable": "false",
         "Secret": "",
         "Id": "",
         "Scope": "",

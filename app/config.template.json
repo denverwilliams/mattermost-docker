@@ -84,12 +84,12 @@
         "ShowFullName": true
     },
     "GitLabSettings": {
-        "Enable": "{env `ENABLE_GITLAB` || `false`}",
-        "Secret": "{env `GITLAB_SECRET`}",
-        "Id": "{env `GITLAB_ID`}",
-        "Scope": "{env `GITLAB_SCOPE`}",
-        "AuthEndpoint": "{env `GITLAB_AUTH`}",
-        "TokenEndpoint": "{env `GITLAB_TOKEN`}",
-        "UserApiEndpoint": "{env `GITLAB_API`}"
+        "Enable": "[{env `ENABLE_GITLAB` || `false`}]",
+        "Secret": "[{env `GITLAB_SECRET`}]",
+        "Id": "[{env `GITLAB_ID`}]",
+        "Scope": "[{env `GITLAB_SCOPE`}]",
+        "AuthEndpoint": "[{env `GITLAB_AUTH`}]",
+        "TokenEndpoint": "[{env `GITLAB_TOKEN`}]",
+        "UserApiEndpoint": "[{env `GITLAB_API`}]"
     }
 }

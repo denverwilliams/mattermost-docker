@@ -1,0 +1,15 @@
+before_script:
+- docker info
+
+build:
+  stage: build
+  tags:
+    - shell-runner
+  script:
+  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN docker.ii.org.nz
+  - docker build -t docker.ii.org.nz/ii/mattermost-docker:web1 web/
+  - docker build -t docker.ii.org.nz/ii/mattermost-docker:app1 app/
+  - docker build -t docker.ii.org.nz/ii/mattermost-docker:db1 db/
+  - docker push docker.ii.org.nz/cobudget/cobudget-ui:web1
+  - docker push docker.ii.org.nz/cobudget/cobudget-ui:app1
+  - docker push docker.ii.org.nz/cobudget/cobudget-ui:db1

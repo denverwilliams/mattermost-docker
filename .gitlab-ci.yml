@@ -7,9 +7,9 @@ build:
     - shell-runner
   script:
   - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN docker.ii.org.nz
-  - docker build -t docker.ii.org.nz/ii/mattermost-docker:web1 web/
-  - docker build -t docker.ii.org.nz/ii/mattermost-docker:app1 app/
-  - docker build -t docker.ii.org.nz/ii/mattermost-docker:db1 db/
-  - docker push docker.ii.org.nz/ii/mattermost-docker:web1
-  - docker push docker.ii.org.nz/ii/mattermost-docker:app1
-  - docker push docker.ii.org.nz/ii/mattermost-docker:db1
+  - docker build -t docker.ii.org.nz/ii/mattermost-docker:web web/
+  - docker build -t docker.ii.org.nz/ii/mattermost-docker:app app/
+  - docker build -t docker.ii.org.nz/ii/mattermost-docker:db db/
+  - docker push docker.ii.org.nz/ii/mattermost-docker:web
+  - docker push docker.ii.org.nz/ii/mattermost-docker:app
+  - docker push docker.ii.org.nz/ii/mattermost-docker:db

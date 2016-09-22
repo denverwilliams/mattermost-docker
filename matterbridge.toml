@@ -1,3 +1,6 @@
+# Sample config
+#    docker run -ti -v /<path>/matterbridge.toml:/matterbridge.toml 42wim/matterbridge
+
 [irc]
     [irc.freenode]
     Server="irc.freenode.net:6667"

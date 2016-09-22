@@ -1,0 +1,45 @@
+[irc]
+    [irc.freenode]
+    Server="irc.freenode.net:6667"
+    Nick="matterbridge"
+
+[mattermost]
+    [mattermost.ii]
+    useAPI=true
+    Server="mattermost.ii.org.nz"
+    Team="coop"
+    Login="cku+mattertest@hippiehacker.org"
+    Password="mattertest100"
+    PrefixMessagesWithNick=true
+
+[slack]
+    [slack.cku]
+    useAPI=true
+    Token="xoxp-82989398802-82978456005-82986993095-858708641a4ec9239581a43d5c9576c3"
+    PrefixMessagesWithNick=true
+
+
+[[gateway]]
+    name="gateway1"
+    enable=true
+
+    [[gateway.in]]
+    account="mattermost.ii"
+    channel="testing"
+    [[gateway.out]]
+    account="mattermost.ii"
+    channel="testing"
+
+    [[gateway.in]]
+    account="slack.cku"
+    channel="random"
+    [[gateway.out]]
+    account="slack.cku"
+    channel="random"
+
+    [[gateway.in]]
+    account="irc.freenode"
+    channel="#ckuiinz"
+    [[gateway.out]]
+    account="irc.freenode"
+    channel="#ckuiinz"

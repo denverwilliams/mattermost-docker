@@ -1,0 +1,3 @@
+[submodule "bridge/matterbridge"]
+	path = bridge/matterbridge
+	url = https://github.com/42wim/matterbridge.git

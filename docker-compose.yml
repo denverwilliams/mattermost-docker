@@ -1,33 +1,65 @@
-db:
-  build: db
-  volumes:
-    - ./volumes/db/var/lib/postgresql/data:/var/lib/postgresql/data
-    - /etc/localtime:/etc/localtime:ro
-  # uncomment the following to enable backup
-  #environment:
-  #  - AWS_ACCESS_KEY_ID=XXXX
-  #  - AWS_SECRET_ACCESS_KEY=XXXX
-  #  - WALE_S3_PREFIX=s3://BUCKET_NAME/PATH
-  #  - AWS_REGION=us-east-1
-app:
-  build: app
-  links:
-    - db:db
-  volumes:
-    - ./volumes/app/mattermost/config:/mattermost/config:rw
-    - ./volumes/app/mattermost/data:/mattermost/data:rw
-    - /etc/localtime:/etc/localtime:ro
-web:
-  build: web
-  ports:
-    - "80:80"
-    - "443:443"
-  links:
-    - app:app
-  volumes:
+version: '2'
+services:
+  nginx_proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ../volumes/certs/:/etc/nginx/certs # Certs for all Required Domains must be in this Directory
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
+  mattermost_db:
+    image: db
+    volumes:
+      - ../volumes/mattermost/postgresql_data:/var/lib/postgresql/data
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - MM_USERNAME=secret
+      - MM_PASSWORD=secret
+      - MM_DBNAME=mattermost
+
+  mattermost_app:
+    image: app
+    links:
+      - mattermost_db:db
+    volumes:
+       - ../volumes/mattermost/app_config:/mattermost/config:rw
+       - ../volumes/mattermost/app_data:/mattermost/data:rw
+       - /etc/localtime:/etc/localtime:ro
+    environment:
+       - DB_HOST=db
+       - DB_PORT=5432
+       - MM_USERNAME=secret
+       - MM_PASSWORD=secret
+       - MM_DBNAME=mattermost
+       - EMAIL_SIGN_UP=false
+       - EMAIL_NOTIFICATIONS=true
+       - EMAIL_VERIFICATION=false
+       - EMAIL_NAME=Mattermost
+       - EMAIL=mattermost@mydomain.com
+       - SMTP_USER=user@gmail.com
+       - SMTP_PASS=secret
+       - SMTP_SERVER=smtp.gmail.com
+       - SMTP_PORT=587
+       - CONNECTION=STARTTLS 
+       - GITLAB=true
+       - SECRET=secret
+       - ID=id
+       - AUTH=https://gitlab.com/oauth/authorize
+       - TOKEN=https://gitlab.com/oauth/token
+       - USER=https://gitlab.com/api/v3/user
+
+  mattermost_web:
+    image: web
+    links:
+      - mattermost_app:app
+    volumes:
       # This directory must have cert files
-    - ./volumes/web/cert:/cert:ro
-    - /etc/localtime:/etc/localtime:ro
-  environment:
-    - MATTERMOST_ENABLE_SSL=false
-    - PLATFORM_PORT_80_TCP_PORT=80
+      - ../volumes/mattermost/web_cert:/cert:ro
+    environment:
+      - VIRTUAL_HOST=mattermost.mydomain.com
+      - VIRTUAL_PORT=443
+      - VIRTUAL_PROTO=https
+      - MATTERMOST_ENABLE_SSL=true
+      - PLATFORM_PORT_80_TCP_PORT=80

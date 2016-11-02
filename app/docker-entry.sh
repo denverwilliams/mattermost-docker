@@ -93,7 +93,7 @@ cat << ENV_FILE > $config
         "PasswordResetSalt": "vZ4DcKyVVRlKHHJpexcuXzojkE5PZ5eL",
         "ApplePushServer": "",
         "ApplePushCertPublic": "",
-        "ApplePushCertPrivate": ""
+        "ApplePushCertPrivate": "",
         "SendPushNotifications": ${EMAIL_PUSH_NOTIFICATION},
         "PushNotificationServer": "${EMAIL_PUSH_NOTIFICATION_SERVER}",
         "PushNotificationContents": "${EMAIL_PUSH_NOTIFICATION_CONTENTS}"

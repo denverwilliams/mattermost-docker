@@ -23,9 +23,9 @@ cat << ENV_FILE > $config
         "SegmentDeveloperKey": "",
         "GoogleDeveloperKey": "",
         "EnableOAuthServiceProvider": false,
-        "EnableIncomingWebhooks": false,
-        "EnableOutgoingWebhooks": false,
-        "EnablePostUsernameOverride": false,
+        "EnableIncomingWebhooks": true,
+        "EnableOutgoingWebhooks": true,
+        "EnablePostUsernameOverride": true,
         "EnablePostIconOverride": false,
         "EnableTesting": false,
         "EnableSecurityFixAlert": true

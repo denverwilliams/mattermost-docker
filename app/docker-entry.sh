@@ -89,6 +89,9 @@ cat << ENV_FILE > $config
         "ApplePushServer": "",
         "ApplePushCertPublic": "",
         "ApplePushCertPrivate": ""
+        "SendPushNotifications": true,
+        "PushNotificationServer": "http://push-test.mattermost.com",
+        "PushNotificationContents": "full"
     },
     "RateLimitSettings": {
         "EnableRateLimiter": true,

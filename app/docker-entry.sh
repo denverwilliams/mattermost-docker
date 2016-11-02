@@ -9,6 +9,11 @@ export MM_DBNAME="${MM_DBNAME:-mattermost}"
 export EMAIL_SIGN_UP="${EMAIL_SIGN_UP:-true}"
 export EMAIL_NOTIFICATIONS="${EMAIL_NOTIFICATIONS:-false}"
 export EMAIL_VERIFICATION="${EMAIL_VERIFICATION:-false}"
+export EMAIL_PUSH_NOTIFICATION="${EMAIL_PUSH_NOTIFICATION:-false}"
+
+export ENABLE_INCOMING_WEBHOOKS="${ENABLE_INCOMING_WEBHOOKS:-false}"
+export ENABLE_OUTGOING_WEBHOOKS="${ENABLE_OUTGOING_WEBHOOKS:-false}"
+export ENABLE_POST_USERNAME_OVERRIDE="${ENABLE_POST_USERNAME_OVERRIDE:-false}"
 
 export GITLAB="${GITLAB:-false}"
 
@@ -23,9 +28,9 @@ cat << ENV_FILE > $config
         "SegmentDeveloperKey": "",
         "GoogleDeveloperKey": "",
         "EnableOAuthServiceProvider": false,
-        "EnableIncomingWebhooks": true,
-        "EnableOutgoingWebhooks": true,
-        "EnablePostUsernameOverride": true,
+        "EnableIncomingWebhooks": ${ENABLE_INCOMING_WEBHOOKS},
+        "EnableOutgoingWebhooks": ${ENABLE_OUTGOING_WEBHOOKS},
+        "EnablePostUsernameOverride": ${ENABLE_POST_USERNAME_OVERRIDE},
         "EnablePostIconOverride": false,
         "EnableTesting": false,
         "EnableSecurityFixAlert": true
@@ -89,9 +94,9 @@ cat << ENV_FILE > $config
         "ApplePushServer": "",
         "ApplePushCertPublic": "",
         "ApplePushCertPrivate": ""
-        "SendPushNotifications": true,
-        "PushNotificationServer": "http://push-test.mattermost.com",
-        "PushNotificationContents": "full"
+        "SendPushNotifications": ${EMAIL_PUSH_NOTIFICATION},
+        "PushNotificationServer": "${EMAIL_PUSH_NOTIFICATION_SERVER}",
+        "PushNotificationContents": "${EMAIL_PUSH_NOTIFICATION_CONTENTS}"
     },
     "RateLimitSettings": {
         "EnableRateLimiter": true,

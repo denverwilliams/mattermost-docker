@@ -49,6 +49,8 @@ services:
        - AUTH=https://gitlab.com/oauth/authorize
        - TOKEN=https://gitlab.com/oauth/token
        - USER=https://gitlab.com/api/v3/user
+       - INCOMING_WEBHOOKS=true
+       - OUTGOING_WEBHOOKS=true
 
   mattermost_web:
     image: web

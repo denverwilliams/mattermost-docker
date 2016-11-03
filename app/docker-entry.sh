@@ -7,6 +7,7 @@ export MM_PASSWORD="${MM_PASSWORD:-mmuser_password}"
 export MM_DBNAME="${MM_DBNAME:-mattermost}"
 
 export EMAIL_SIGN_UP="${EMAIL_SIGN_UP:-true}"
+export EMAIL_SIGN_IN="${EMAIL_SIGN_IN:-false}"
 export EMAIL_NOTIFICATIONS="${EMAIL_NOTIFICATIONS:-false}"
 export EMAIL_VERIFICATION="${EMAIL_VERIFICATION:-false}"
 export EMAIL_PUSH_NOTIFICATION="${EMAIL_PUSH_NOTIFICATION:-false}"
@@ -80,6 +81,7 @@ cat << ENV_FILE > $config
     },
     "EmailSettings": {
         "EnableSignUpWithEmail": ${EMAIL_SIGN_UP},
+        "EnableSignInWithEmail": ${EMAIL_SIGN_IN},
         "SendEmailNotifications": ${EMAIL_NOTIFICATIONS},
         "RequireEmailVerification": ${EMAIL_VERIFICATION},
         "FeedbackName": "${EMAIL_NAME}",

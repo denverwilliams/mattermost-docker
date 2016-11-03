@@ -33,7 +33,8 @@ services:
        - MM_USERNAME=secret
        - MM_PASSWORD=secret
        - MM_DBNAME=mattermost
-       - EMAIL_SIGN_UP=false
+       - EMAIL_SIGN_UP=true
+       - EMAIL_SIGN_IN=true
        - EMAIL_NOTIFICATIONS=true
        - EMAIL_VERIFICATION=false
        - EMAIL_NAME=Mattermost
